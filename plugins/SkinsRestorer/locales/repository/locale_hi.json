@@ -1,0 +1,20 @@
+{
+  "skinsrestorer.help_skins": "Skins GUI खुलता है |",
+  "skinsrestorer.help_sr": "SkinsRestorer के लिए एडमिन कमांड्स।",
+  "skinsrestorer.help_skin_set": "आपकी स्किन बदले।",
+  "skinsrestorer.help_skin_set_other": "दूसरे की स्किन बदले।",
+  "skinsrestorer.help_skin_set_url": "URL से खुदकी स्किन बदले।",
+  "skinsrestorer.help_skin_clear": "आपकी स्किन हटा दे।",
+  "skinsrestorer.help_skin_clear_other": "किसी और की स्किन हटाए।",
+  "skinsrestorer.help_skin_search": "आपके अनुसार स्किन ढूंढे।",
+  "skinsrestorer.help_skin_update": "आपकी स्किन बदले।",
+  "skinsrestorer.help_skin_update_other": "दूसरे की स्किन बदले।",
+  "skinsrestorer.help_skull_get": "आपको एक खोपड़ी देता है।",
+  "skinsrestorer.help_sr_reload": "Configuration file को reload करें।",
+  "skinsrestorer.help_sr_status": "आवश्यक प्लगिन API सर्विसेस चेक करें।",
+  "skinsrestorer.help_sr_drop": "डेटाबेस से प्लेयर या स्किन डाटा को हटाए।",
+  "skinsrestorer.help_sr_apply_skin": "चुने हुए प्लेयर पे पुनः स्किन लगाए।",
+  "skinsrestorer.help_sr_create_custom": "पूरे सर्वर के लिए मन मुताबिक स्किन बनाए।",
+  "skinsrestorer.help_sr_purge_old_data": "x दिन पहले का पुराना स्किन डेटा मिटाएँ।",
+  "skinsrestorer.help_sr_dump": "सपोर्ट डाटा को bytebin.lucko.me पे अपलोड करें।"
+}
