@@ -1,0 +1,14 @@
+name: Maces
+main: com.example.maces.MacesPlugin
+version: 1.0.1
+api-version: 1.12
+commands:
+  mace:
+    description: Gives you a custom mace item
+    usage: /mace
+  looter:
+    description: Gives you the Looter tool
+    usage: /looter
+  backpack:
+    description: Gives you a backpack chestplate and opens its extra storage
+    usage: /backpack [open]
