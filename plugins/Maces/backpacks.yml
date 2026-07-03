@@ -1,35 +1,49 @@
 §k564fc54e-83af-42cd-bbc9-97ac489d7942:
-- type: DIAMOND
-  amount: 5
+- type: DIAMOND_BLOCK
+  amount: 2
 - type: LAVA_BUCKET
-- type: BUCKET
 - type: LOG
   damage: 1
-  amount: 64
+- {}
 - type: STICK
   amount: 11
 - type: SHIELD
-- {}
-- {}
-- {}
-- type: DIAMOND_BLOCK
+- type: WOOD
+  damage: 1
+  amount: 20
+- type: BED
+- type: COBBLESTONE
+  amount: 64
+- type: DIAMOND
+  amount: 10
 - {}
 - {}
 - type: CHEST
   amount: 3
-- type: PISTON_BASE
+- type: SLIME_BALL
+  amount: 60
+- type: IRON_ORE
+  amount: 11
+- type: SLIME_BALL
+  amount: 56
+- type: SPRUCE_DOOR_ITEM
+  amount: 2
+- type: COBBLESTONE
+  amount: 64
+- {}
+- type: IRON_INGOT
+  amount: 35
 - {}
 - {}
-- {}
-- {}
-- {}
-- {}
-- {}
-- {}
-- {}
-- {}
-- {}
-- {}
+- type: LOG
+  damage: 1
+  amount: 64
+- type: LEATHER
+  amount: 3
+- type: SHIELD
+- type: WOOD
+  damage: 1
+  amount: 20
 - {}
 147e9189-773d-473a-8fe4-dc346fcbfe14:
 - {}
@@ -244,6 +258,63 @@
 - {}
 - {}
 e1cd131d-4efd-47de-ad8d-3040a3c8d1d9:
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+8147a357-c8fa-4a34-8100-ba1433351668:
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- type: IRON_ORE
+  amount: 27
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+§k8147a357-c8fa-4a34-8100-ba1433351668:
 - {}
 - {}
 - {}

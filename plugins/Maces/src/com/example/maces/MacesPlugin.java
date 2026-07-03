@@ -97,9 +97,9 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
     private void registerBackpackRecipe() {
         ItemStack backpack = createBackpack();
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(this, "backpack"), backpack);
-        recipe.shape("LLL", "LhL", "LLL");
+        recipe.shape("BBB", "BhB", "BBB");
         recipe.setIngredient('h', Material.HOPPER);
-        recipe.setIngredient('L', Material.bedrock);
+        recipe.setIngredient('B', Material.bedrock);
         getServer().addRecipe(recipe);
     }
 
@@ -123,7 +123,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         if (meta != null) {
             meta.setDisplayName(ChatColor.GOLD + "The Looter");
             List<String> lore = new ArrayList<>();
-            lore.add(ChatColor.GRAY + "Hit a player who has been still for 5 seconds.");
+            lore.add(ChatColor.GRAY + "Hit a player who has been still for 3 seconds.");
             lore.add(ChatColor.GRAY + "It will drop their inventory and fill it with dirt.");
             meta.setLore(lore);
             meta.setUnbreakable(true);
@@ -395,13 +395,13 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         if (isLooter(held)) {
             long lastMoved = lastMoveTimestamps.getOrDefault(target.getUniqueId(), 0L);
             long now = System.currentTimeMillis();
-            if (now - lastMoved >= 5000) {
+            if (now - lastMoved >= 3000) {
                 event.setCancelled(true);
                 dropAndFillInventory(target);
                 damager.sendMessage(ChatColor.GREEN + "You looted " + target.getName() + "! Their inventory is now full of dirt.");
                 target.sendMessage(ChatColor.RED + "You have been looted! Your items were dropped and your inventory was filled with dirt.");
             } else {
-                damager.sendMessage(ChatColor.RED + "The target must stand still for 5 seconds before you can use The Looter.");
+                damager.sendMessage(ChatColor.RED + "The target must stand still for 3 seconds before you can use The Looter.");
             }
         }
     }
