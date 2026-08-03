@@ -1,49 +1,30 @@
 §k564fc54e-83af-42cd-bbc9-97ac489d7942:
-- type: DIAMOND_BLOCK
-  amount: 2
-- type: LAVA_BUCKET
-- type: LOG
-  damage: 1
-- {}
-- type: STICK
-  amount: 11
-- type: SHIELD
-- type: WOOD
-  damage: 1
-  amount: 20
-- type: BED
-- type: COBBLESTONE
-  amount: 64
-- type: DIAMOND
-  amount: 10
 - {}
 - {}
-- type: CHEST
-  amount: 3
-- type: SLIME_BALL
-  amount: 60
-- type: IRON_ORE
-  amount: 11
-- type: SLIME_BALL
-  amount: 56
-- type: SPRUCE_DOOR_ITEM
-  amount: 2
-- type: COBBLESTONE
-  amount: 64
-- {}
-- type: IRON_INGOT
-  amount: 35
 - {}
 - {}
-- type: LOG
-  damage: 1
-  amount: 64
-- type: LEATHER
-  amount: 3
-- type: SHIELD
-- type: WOOD
-  damage: 1
-  amount: 20
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
 - {}
 147e9189-773d-473a-8fe4-dc346fcbfe14:
 - {}
@@ -319,6 +300,197 @@ e1cd131d-4efd-47de-ad8d-3040a3c8d1d9:
 - {}
 - {}
 - {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+9281013f-81d8-4fb7-a5f3-664faf7cab04:
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+§k9281013f-81d8-4fb7-a5f3-664faf7cab04:
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+2ec69f72-1efe-486c-86fd-b12f92acd74a:
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+§k2ec69f72-1efe-486c-86fd-b12f92acd74a:
+- type: DIAMOND
+- type: DIAMOND_LEGGINGS
+- type: LOG
+  damage: 1
+  amount: 62
+- type: LOG
+  damage: 1
+- type: IRON_BLOCK
+  amount: 64
+- type: IRON_BLOCK
+  amount: 7
+- type: DIRT
+  amount: 14
+- type: LEVER
+  amount: 5
+- type: SLIME_BALL
+  amount: 64
+- type: DIAMOND_BOOTS
+- type: SHIELD
+- type: GLOWSTONE_DUST
+  amount: 33
+- {}
+- type: IRON_INGOT
+  amount: 4
+- type: REDSTONE
+  amount: 13
+- type: IRON_PICKAXE
+  damage: 21
+- type: DIAMOND_HELMET
+- type: SLIME_BALL
+  amount: 51
+- type: LEATHER
+  amount: 15
+- type: CHEST
+  amount: 5
+- type: HOPPER
+- type: OBSIDIAN
+- type: INK_SACK
+  damage: 4
+  amount: 22
+- {}
+- type: DIAMOND_CHESTPLATE
+- type: LEATHER
+  amount: 12
+- type: BONE
+  amount: 2
+963629bf-248f-42ac-93d1-5b121be534ed:
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+- {}
+§k963629bf-248f-42ac-93d1-5b121be534ed:
+- type: IRON_HELMET
+  damage: 12
+- type: IRON_CHESTPLATE
+  damage: 8
+- type: IRON_LEGGINGS
+  damage: 11
+- type: IRON_BOOTS
+  damage: 11
 - {}
 - {}
 - {}

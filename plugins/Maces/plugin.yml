@@ -9,6 +9,9 @@ commands:
   looter:
     description: Gives you the Looter tool
     usage: /looter
+  lock:
+    description: Gives you a custom chest lock item
+    usage: /lock
   backpack:
     description: Gives you a backpack chestplate and opens its extra storage
     usage: /backpack [open]

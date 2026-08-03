@@ -284,6 +284,10 @@ login:
     noSkinIfLoginCanceled: true
     # This will make SkinsRestorer always apply the skin even if the player joins as premium on an online mode server.
     alwaysApplyPremium: false
+    offlineModeWarning:
+        # Sends a one-time warning to offline-mode players that some third-party launchers can override SkinsRestorer skins.
+        # SkinsRestorer cannot detect the exact launcher. Players can dismiss the warning with /skin notification ignore-cracked-client.
+        enabled: true
 api:
     # Here you can fill in your APIKey for lower MineSkin request times.
     # Key can be requested from https://mineskin.org/apikey

@@ -5,6 +5,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Chest;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -35,8 +39,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener {
@@ -45,6 +51,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
     private final Map<UUID, ItemStack> backpackEditTargets = new HashMap<>();
     private final Map<UUID, Integer> backpackEditSlots = new HashMap<>();
     private final Map<String, Inventory> backpackInventories = new HashMap<>();
+    private final Map<String, UUID> lockedChests = new HashMap<>();
     private File backpackFile;
     private FileConfiguration backpackConfig;
 
@@ -53,6 +60,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         registerMaceRecipe();
         registerLooterRecipe();
         registerBackpackRecipe();
+        registerLockRecipe();
         getServer().getPluginManager().registerEvents(this, this);
         if (!getDataFolder().exists()) {
             getDataFolder().mkdirs();
@@ -72,6 +80,10 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         if (backpackCommand != null) {
             backpackCommand.setExecutor(this);
         }
+        PluginCommand lockCommand = getCommand("lock");
+        if (lockCommand != null) {
+            lockCommand.setExecutor(this);
+        }
         getLogger().info("Maces plugin enabled");
     }
 
@@ -79,7 +91,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         ItemStack mace = createMace();
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(this, "mace"), mace);
         recipe.shape(" B ", " B ", " S ");
-        recipe.setIngredient('B', Material.BLAZE_ROD);
+        recipe.setIngredient('B', Material.BEDROCK);
         recipe.setIngredient('S', Material.STICK);
         getServer().addRecipe(recipe);
     }
@@ -97,9 +109,19 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
     private void registerBackpackRecipe() {
         ItemStack backpack = createBackpack();
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(this, "backpack"), backpack);
-        recipe.shape("BBB", "BhB", "BBB");
-        recipe.setIngredient('h', Material.HOPPER);
-        recipe.setIngredient('B', Material.bedrock);
+        recipe.shape("LLL", "CHC", "LLL");
+        recipe.setIngredient('C', Material.CHEST);
+        recipe.setIngredient('H', Material.HOPPER);
+        recipe.setIngredient('L', Material.LEATHER);
+        getServer().addRecipe(recipe);
+    }
+
+    private void registerLockRecipe() {
+        ItemStack lock = createLock();
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(this, "lock"), lock);
+        recipe.shape("III", "IFI", "III");
+        recipe.setIngredient('I', Material.IRON_INGOT);
+        recipe.setIngredient('F', Material.IRON_BARS);
         getServer().addRecipe(recipe);
     }
 
@@ -117,7 +139,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
     }
 
     private ItemStack createLooter() {
-        ItemStack item = new ItemStack(Material.GOLD_SWORD);
+        ItemStack item = new ItemStack(Material.IRON_SWORD);
         item.setDurability((short) 0);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
@@ -141,9 +163,24 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
             lore.add(ChatColor.DARK_GRAY + "[Backpack]");
             lore.add(ChatColor.GRAY + "This backpack stores its own contents.");
             lore.add(ChatColor.GRAY + "It keeps its items when dropped on death.");
-            lore.add(ChatColor.GRAY + "Wear it and use /backpack open to access it.");
+            lore.add(ChatColor.GRAY + "Use /backpack open to access it.");
             meta.setLore(lore);
             meta.setUnbreakable(true);
+            item.setItemMeta(meta);
+        }
+        return item;
+    }
+
+    private ItemStack createLock() {
+        ItemStack item = new ItemStack(Material.FLINT_AND_STEEL);
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            meta.setDisplayName(ChatColor.GOLD + "Lock");
+            List<String> lore = new ArrayList<>();
+            lore.add(ChatColor.GRAY + "Right click a chest to lock it.");
+            lore.add(ChatColor.GRAY + "Only the owner can open it.");
+            lore.add(ChatColor.GRAY + "Use it again to unlock the chest.");
+            meta.setLore(lore);
             item.setItemMeta(meta);
         }
         return item;
@@ -153,18 +190,6 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         ItemStack chestplate = player.getInventory().getChestplate();
         if (isBackpack(chestplate)) {
             return chestplate;
-        }
-
-        ItemStack held = player.getInventory().getItemInMainHand();
-        if (isBackpack(held)) {
-            return held;
-        }
-
-        for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
-            ItemStack item = player.getInventory().getItem(slot);
-            if (isBackpack(item)) {
-                return item;
-            }
         }
         return null;
     }
@@ -264,14 +289,11 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
     private void openBackpack(Player player) {
         ItemStack backpack = findBackpack(player);
         if (backpack == null) {
-            player.sendMessage(ChatColor.RED + "You need a Backpack item in your inventory or equipped to open it.");
+            player.sendMessage(ChatColor.RED + "You need a Backpack item equipped on your chestplate to open it.");
             return;
         }
 
-        int slot = player.getInventory().first(backpack);
-        if (slot == -1 && isBackpack(player.getInventory().getChestplate())) {
-            slot = -2;
-        }
+        int slot = -2;
 
         Inventory inventory = getBackpackInventory(backpack);
         persistBackpackItem(player, backpack, slot);
@@ -283,7 +305,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
     private void renameBackpack(Player player, String newName) {
         ItemStack backpack = findBackpack(player);
         if (backpack == null) {
-            player.sendMessage(ChatColor.RED + "You need a Backpack item in your inventory to rename it.");
+            player.sendMessage(ChatColor.RED + "You need a Backpack item equipped on your chestplate to rename it.");
             return;
         }
 
@@ -311,11 +333,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         meta.setLore(lore);
         backpack.setItemMeta(meta);
 
-        int slot = player.getInventory().first(backpack);
-        if (slot == -1 && isBackpack(player.getInventory().getChestplate())) {
-            slot = -2;
-        }
-        persistBackpackItem(player, backpack, slot);
+        persistBackpackItem(player, backpack, -2);
 
         player.sendMessage(ChatColor.GREEN + "Backpack renamed to " + ChatColor.GOLD + newName);
     }
@@ -362,7 +380,7 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         if (item == null) {
             return false;
         }
-        if (item.getType() != Material.GOLD_SWORD) {
+        if (item.getType() != Material.IRON_SWORD) {
             return false;
         }
         if (!item.hasItemMeta()) {
@@ -370,6 +388,131 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         }
         ItemMeta meta = item.getItemMeta();
         return meta.hasDisplayName() && (ChatColor.GOLD + "The Looter").equals(meta.getDisplayName());
+    }
+
+    private boolean isLock(ItemStack item) {
+        if (item == null) {
+            return false;
+        }
+        if (item.getType() != Material.FLINT_AND_STEEL) {
+            return false;
+        }
+        if (!item.hasItemMeta()) {
+            return false;
+        }
+        ItemMeta meta = item.getItemMeta();
+        return meta.hasDisplayName() && (ChatColor.GOLD + "Lock").equals(meta.getDisplayName());
+    }
+
+    private boolean isChest(Block block) {
+        if (block == null) {
+            return false;
+        }
+        Material type = block.getType();
+        return type == Material.CHEST || type == Material.TRAPPED_CHEST;
+    }
+
+    private String getChestKey(Block block) {
+        if (block == null) {
+            return null;
+        }
+        return block.getWorld().getName() + ":" + block.getX() + ":" + block.getY() + ":" + block.getZ();
+    }
+
+    private Set<String> getChestLockKeys(Block block) {
+        Set<String> keys = new HashSet<>();
+        if (!isChest(block)) {
+            return keys;
+        }
+        keys.add(getChestKey(block));
+        BlockFace[] faces = new BlockFace[] { BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST, BlockFace.WEST };
+        for (BlockFace face : faces) {
+            Block neighbor = block.getRelative(face);
+            if (isChest(neighbor)) {
+                keys.add(getChestKey(neighbor));
+            }
+        }
+        return keys;
+    }
+
+    private UUID getLockedChestOwner(Block block) {
+        if (!isChest(block)) {
+            return null;
+        }
+        String key = getChestKey(block);
+        if (key == null) {
+            return null;
+        }
+        return lockedChests.get(key);
+    }
+
+    private void toggleChestLock(Player player, Block block) {
+        Set<String> keys = getChestLockKeys(block);
+        if (keys.isEmpty()) {
+            return;
+        }
+
+        UUID currentOwner = null;
+        for (String key : keys) {
+            if (lockedChests.containsKey(key)) {
+                currentOwner = lockedChests.get(key);
+                break;
+            }
+        }
+
+        if (currentOwner != null) {
+            if (!currentOwner.equals(player.getUniqueId())) {
+                player.sendMessage(ChatColor.RED + "This chest is locked by another player.");
+                return;
+            }
+            for (String key : keys) {
+                lockedChests.remove(key);
+            }
+            player.sendMessage(ChatColor.GREEN + "Chest unlocked.");
+            return;
+        }
+
+        for (String key : keys) {
+            lockedChests.put(key, player.getUniqueId());
+        }
+        player.sendMessage(ChatColor.GREEN + "Chest locked for " + player.getName() + ".");
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        Block block = event.getBlock();
+        if (!isChest(block)) {
+            return;
+        }
+        UUID owner = getLockedChestOwner(block);
+        if (owner != null) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "This chest is locked. Right-click it with a Lock item to unlock it.");
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+
+        Block block = event.getClickedBlock();
+        if (block == null || !isChest(block)) {
+            return;
+        }
+
+        if (isLock(event.getItem())) {
+            event.setCancelled(true);
+            toggleChestLock(event.getPlayer(), block);
+            return;
+        }
+
+        UUID owner = getLockedChestOwner(block);
+        if (owner != null && !owner.equals(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "This chest is locked by another player.");
+        }
     }
 
     @EventHandler
@@ -434,20 +577,6 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         if (!event.getFrom().toVector().equals(event.getTo().toVector())) {
             Player player = event.getPlayer();
             lastMoveTimestamps.put(player.getUniqueId(), System.currentTimeMillis());
-        }
-    }
-
-    @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() != Action. && event.getAction() != Action._) {
-            return;
-        }
-
-        Player player = event.getPlayer();
-        ItemStack chestplate = player.getInventory().getChestplate();
-        if (isBackpack(chestplate) && event.getItem() == null) {
-            event.setCancelled(true);
-            openBackpack(player);
         }
     }
 
@@ -540,14 +669,28 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
         Player player = (Player) sender;
         PlayerInventory inventory = player.getInventory();
         if (command.getName().equalsIgnoreCase("mace")) {
+            if (!player.isOp()) {
+                player.sendMessage(ChatColor.RED + "Only operators can use /mace.");
+                return true;
+            }
             inventory.addItem(createMace());
             player.sendMessage(ChatColor.GREEN + "You were given a mace.");
             return true;
         }
 
         if (command.getName().equalsIgnoreCase("looter")) {
+            if (!player.isOp()) {
+                player.sendMessage(ChatColor.RED + "Only operators can use /looter.");
+                return true;
+            }
             inventory.addItem(createLooter());
             player.sendMessage(ChatColor.GREEN + "You were given The Looter.");
+            return true;
+        }
+
+        if (command.getName().equalsIgnoreCase("lock")) {
+            inventory.addItem(createLock());
+            player.sendMessage(ChatColor.GREEN + "You were given a Lock item.");
             return true;
         }
 
@@ -571,10 +714,14 @@ public class MacesPlugin extends JavaPlugin implements CommandExecutor, Listener
                 renameBackpack(player, nameBuilder.toString());
                 return true;
             }
+            if (!player.isOp()) {
+                player.sendMessage(ChatColor.RED + "Only operators can create backpacks with /backpack.");
+                return true;
+            }
             ItemStack backpack = createBackpack();
             if (inventory.getChestplate() == null) {
                 inventory.setChestplate(backpack);
-                player.sendMessage(ChatColor.GREEN + "You equipped a wearable backpack. Use /backpack open with empty hand while wearing it.");
+                player.sendMessage(ChatColor.GREEN + "You equipped a wearable backpack. Use /backpack open to access it.");
             } else {
                 inventory.addItem(backpack);
                 player.sendMessage(ChatColor.GREEN + "You were given a Backpack item. Use /backpack open to access its storage.");
