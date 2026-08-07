@@ -123,9 +123,9 @@ world-settings:
     duplicate-uuid-saferegen-delete-range: 32
     keep-spawn-loaded-range: 6
     auto-save-interval: -1
-    container-update-tick-rate: 1
     nether-ceiling-void-damage: false
     allow-non-player-entities-on-scoreboards: false
+    container-update-tick-rate: 1
     frosted-ice:
       enabled: true
       delay:

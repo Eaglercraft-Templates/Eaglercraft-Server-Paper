@@ -1,0 +1,175 @@
+nohup: ignoring input
+Loading libraries, please wait...
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by com.lmax.disruptor.RingBufferFields (file:/workspaces/Eaglercraft-Server-Paper/cache/patched_1.12.2.jar)
+WARNING: Please consider reporting this to the maintainers of class com.lmax.disruptor.RingBufferFields
+WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::loadLibrary has been called by com.sun.jna.Native in an unnamed module (file:/workspaces/Eaglercraft-Server-Paper/cache/patched_1.12.2.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-08-06 07:12:27,545 main WARN Disabling terminal, you're running in an unsupported environment.
+[07:12:29 INFO]: Starting minecraft server version 1.12.2
+[07:12:29 ERROR]: [TerminalConsole] Failed to read console input
+java.io.IOException: Bad file descriptor
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:?]
+	at java.io.FileInputStream.read(FileInputStream.java:281) ~[?:?]
+	at java.lang.System$In.read(System.java:1871) ~[?:?]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:328) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:388) ~[?:?]
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:279) ~[?:?]
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:322) ~[?:?]
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:186) ~[?:?]
+	at java.io.InputStreamReader.read(InputStreamReader.java:183) ~[?:?]
+	at java.io.BufferedReader.fill(BufferedReader.java:166) ~[?:?]
+	at java.io.BufferedReader.readLine(BufferedReader.java:333) ~[?:?]
+	at java.io.BufferedReader.readLine(BufferedReader.java:400) ~[?:?]
+	at net.minecrell.terminalconsole.SimpleTerminalConsole.readCommands(SimpleTerminalConsole.java:179) ~[patched_1.12.2.jar:git-Paper-1620]
+	at net.minecrell.terminalconsole.SimpleTerminalConsole.start(SimpleTerminalConsole.java:142) ~[patched_1.12.2.jar:git-Paper-1620]
+	at net.minecraft.server.v1_12_R1.DedicatedServer$2.run(DedicatedServer.java:77) ~[patched_1.12.2.jar:git-Paper-1620]
+[07:12:29 INFO]: Loading properties
+[07:12:29 WARN]: You have used the Spigot command line EULA agreement flag.
+[07:12:29 WARN]: By using this setting you are indicating your agreement to Mojang's EULA (https://account.mojang.com/documents/minecraft_eula).
+[07:12:29 WARN]: If you do not agree to the above EULA please stop your server and remove this flag immediately.
+[07:12:29 INFO]: Default game type: SURVIVAL
+[07:12:29 INFO]: This server is running Paper version git-Paper-1620 (MC: 1.12.2) (Implementing API version 1.12.2-R0.1-SNAPSHOT)
+[07:12:29 INFO]: Debug logging is disabled
+[07:12:29 INFO]: Server Ping Player Sample Count: 12
+[07:12:29 INFO]: Using 4 threads for Netty based IO
+[07:12:29 INFO]: Generating keypair
+[07:12:29 INFO]: Starting Minecraft server on *:25565
+[07:12:29 INFO]: Using epoll channel type
+[07:12:30 INFO]: Set PluginClassLoader as parallel capable
+[07:12:30 INFO]: [AuthMe] Loading AuthMe v5.6.0-bCUSTOM
+[07:12:30 INFO]: [ViaVersion] Loading ViaVersion v5.3.3-SNAPSHOT
+[07:12:30 INFO]: [ViaVersion] ViaVersion 5.3.3-SNAPSHOT is now loaded. Registering protocol transformers and injecting...
+[07:12:30 INFO]: [ViaVersion] Loading block connection mappings ...
+[07:12:31 INFO]: [ViaVersion] Using FastUtil Long2ObjectOpenHashMap for block connections
+[07:12:31 INFO]: [ViaBackwards] Loading translations...
+[07:12:31 INFO]: [ViaBackwards] Registering protocols...
+[07:12:32 INFO]: [ViaRewind] Registering protocols...
+[07:12:32 INFO]: [Maces] Loading Maces v1.0.1
+[07:12:32 INFO]: [ShopPlugin] Loading ShopPlugin v1.0
+[07:12:32 INFO]: [ViaBackwards] Loading ViaBackwards v5.3.2
+[07:12:32 INFO]: [ViaRewind] Loading ViaRewind v4.0.7
+[07:12:32 INFO]: [ViaRewind-Legacy-Support] Loading ViaRewind-Legacy-Support v1.5.2
+[07:12:32 INFO]: [SkinsRestorer] Loading SkinsRestorer v15.12.5
+[07:12:32 INFO]: [EaglerXServer] Loading EaglercraftXServer v1.0.7
+[07:12:32 INFO]: [EaglerXServer] (Platform: Bukkit)
+[07:12:32 WARN]: [EaglerXServer] Note: Its highly recommended to install EaglerXServer on BungeeCord or Velocity instead, you will have a much better experience
+[07:12:32 WARN]: [EaglerXServer] Note: If you are not using Spigot (or a derivative like Paper) or a version above 1.12.2, things probably won't work right
+[07:12:32 INFO]: [EaglerXServer] Server Name: "EaglercraftXServer"
+[07:12:32 INFO]: [EaglerXRewind-1.5] Loading EaglercraftXRewind-1-5 v1.0.2
+[07:12:32 INFO]: Server permissions file permissions.yml is empty, ignoring it
+[07:12:32 INFO]: [ViaRewind] Enabling ViaRewind v4.0.7
+[07:12:32 INFO]: [SkinsRestorer] Enabling SkinsRestorer v15.12.5
+[07:12:32 INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1mRunning on Minecraft [33;1m1.12.2[32;1m.[0;39m
+[07:12:33 INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39mUsing paper join listener![0;39m
+[07:12:33 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[07:12:33 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[07:12:33 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[07:12:33 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[07:12:33 INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[07:12:33 INFO]: Preparing level "world"
+[07:12:33 INFO]: -------- World Settings For [world] --------
+[07:12:33 INFO]: Mob Spawn Range: 4
+[07:12:33 INFO]: Cactus Growth Modifier: 100%
+[07:12:33 INFO]: Cane Growth Modifier: 100%
+[07:12:33 INFO]: Melon Growth Modifier: 100%
+[07:12:33 INFO]: Mushroom Growth Modifier: 100%
+[07:12:33 INFO]: Pumpkin Growth Modifier: 100%
+[07:12:33 INFO]: Sapling Growth Modifier: 100%
+[07:12:33 INFO]: Wheat Growth Modifier: 100%
+[07:12:33 INFO]: NetherWart Growth Modifier: 100%
+[07:12:33 INFO]: Vine Growth Modifier: 100%
+[07:12:33 INFO]: Cocoa Growth Modifier: 100%
+[07:12:33 INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[07:12:33 INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[07:12:33 INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[07:12:33 INFO]: Random Lighting Updates: false
+[07:12:33 INFO]: Structure Info Saving: true
+[07:12:33 INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[07:12:33 INFO]: Max TNT Explosions: 100
+[07:12:33 INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[07:12:33 INFO]: Zombie Aggressive Towards Villager: true
+[07:12:33 INFO]: View Distance: 6
+[07:12:33 INFO]: Item Despawn Rate: 6000
+[07:12:33 INFO]: Item Merge Radius: 2.5
+[07:12:33 INFO]: Arrow Despawn Rate: 1200
+[07:12:33 INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[07:12:33 INFO]: Experience Merge Radius: 3.0
+[07:12:33 INFO]: Nerfing mobs spawned from spawners: false
+[07:12:33 INFO]: -------- World Settings For [world_nether] --------
+[07:12:33 INFO]: Mob Spawn Range: 4
+[07:12:33 INFO]: Cactus Growth Modifier: 100%
+[07:12:33 INFO]: Cane Growth Modifier: 100%
+[07:12:33 INFO]: Melon Growth Modifier: 100%
+[07:12:33 INFO]: Mushroom Growth Modifier: 100%
+[07:12:33 INFO]: Pumpkin Growth Modifier: 100%
+[07:12:33 INFO]: Sapling Growth Modifier: 100%
+[07:12:33 INFO]: Wheat Growth Modifier: 100%
+[07:12:33 INFO]: NetherWart Growth Modifier: 100%
+[07:12:33 INFO]: Vine Growth Modifier: 100%
+[07:12:33 INFO]: Cocoa Growth Modifier: 100%
+[07:12:33 INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[07:12:33 INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[07:12:33 INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[07:12:33 INFO]: Random Lighting Updates: false
+[07:12:33 INFO]: Structure Info Saving: true
+[07:12:33 INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[07:12:33 INFO]: Max TNT Explosions: 100
+[07:12:33 INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[07:12:33 INFO]: Zombie Aggressive Towards Villager: true
+[07:12:33 INFO]: View Distance: 6
+[07:12:33 INFO]: Item Despawn Rate: 6000
+[07:12:33 INFO]: Item Merge Radius: 2.5
+[07:12:33 INFO]: Arrow Despawn Rate: 1200
+[07:12:33 INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[07:12:33 INFO]: Experience Merge Radius: 3.0
+[07:12:33 INFO]: Nerfing mobs spawned from spawners: false
+[07:12:34 INFO]: -------- World Settings For [world_the_end] --------
+[07:12:34 INFO]: Mob Spawn Range: 4
+[07:12:34 INFO]: Cactus Growth Modifier: 100%
+[07:12:34 INFO]: Cane Growth Modifier: 100%
+[07:12:34 INFO]: Melon Growth Modifier: 100%
+[07:12:34 INFO]: Mushroom Growth Modifier: 100%
+[07:12:34 INFO]: Pumpkin Growth Modifier: 100%
+[07:12:34 INFO]: Sapling Growth Modifier: 100%
+[07:12:34 INFO]: Wheat Growth Modifier: 100%
+[07:12:34 INFO]: NetherWart Growth Modifier: 100%
+[07:12:34 INFO]: Vine Growth Modifier: 100%
+[07:12:34 INFO]: Cocoa Growth Modifier: 100%
+[07:12:34 INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[07:12:34 INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[07:12:34 INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[07:12:34 INFO]: Random Lighting Updates: false
+[07:12:34 INFO]: Structure Info Saving: true
+[07:12:34 INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[07:12:34 INFO]: Max TNT Explosions: 100
+[07:12:34 INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[07:12:34 INFO]: Zombie Aggressive Towards Villager: true
+[07:12:34 INFO]: View Distance: 6
+[07:12:34 INFO]: Item Despawn Rate: 6000
+[07:12:34 INFO]: Item Merge Radius: 2.5
+[07:12:34 INFO]: Arrow Despawn Rate: 1200
+[07:12:34 INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[07:12:34 INFO]: Experience Merge Radius: 3.0
+[07:12:34 INFO]: Nerfing mobs spawned from spawners: false
+[07:12:34 INFO]: Preparing start region for level 0 (Seed: -4671573314658705930)
+[07:12:35 INFO]: Preparing spawn area: 13%
+[07:12:35 INFO]: Preparing start region for level 1 (Seed: -4671573314658705930)
+[07:12:35 INFO]: Preparing start region for level 2 (Seed: -4671573314658705930)
+[07:12:35 INFO]: [AuthMe] Enabling AuthMe v5.6.0-bCUSTOM
+[07:12:36 INFO]: [AuthMe] SQLite Setup finished
+[07:12:36 INFO]: [AuthMe] No supported permissions system found! Permissions are disabled!
+[07:12:36 WARN]: [AuthMe] WARNING! The protectInventory feature requires ProtocolLib! Disabling it...
+[07:12:36 INFO]: [AuthMe] AuthMe 5.6.0 build n.CUSTOM successfully enabled!
+[07:12:36 INFO]: [ViaVersion] Enabling ViaVersion v5.3.3-SNAPSHOT
+[07:12:36 INFO]: [Maces] Enabling Maces v1.0.1
+[07:12:36 INFO]: [Maces] Maces plugin enabled
+[07:12:36 INFO]: [ShopPlugin] Enabling ShopPlugin v1.0
+[07:12:36 INFO]: [ShopPlugin] Shop plugin enabled
+[07:12:36 INFO]: [ViaBackwards] Enabling ViaBackwards v5.3.2
+[07:12:36 INFO]: [ViaRewind-Legacy-Support] Enabling ViaRewind-Legacy-Support v1.5.2
+[07:12:36 INFO]: [EaglerXServer] Enabling EaglercraftXServer v1.0.7
