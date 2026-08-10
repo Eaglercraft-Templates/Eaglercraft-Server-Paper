@@ -1,0 +1,21 @@
+name: ShopPlugin
+main: com.example.shop.ShopPlugin
+version: 1.0
+api-version: 1.12
+commands:
+  shop:
+    description: Opens the shop menu.
+    usage: /shop
+  sell:
+    description: Opens the sell menu.
+    usage: /sell
+  sellprice:
+    description: Sets the sell price of an item.
+    usage: /sellprice 
+    permission: shop.admin
+  balance:
+    description: Shows your current shop balance.
+    usage: /balance
+    aliases: [money]
+permissions:
+  

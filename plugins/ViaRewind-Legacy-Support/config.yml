@@ -1,0 +1,16 @@
+# If you need help, you can join our Discord - https://viaversion.com/discord
+brewing-stand-gui-fix: true
+enchanting-gui-fix: true
+lily-pad-fix: true
+carpet-fix: true
+ladder-fix: true
+sound-fix: true
+slime-fix: true
+elytra-fix: true
+area-effect-cloud-particles: true
+versioninfo:
+  active: false
+  max-version: 47
+  interval: JOIN
+  message: '&7[&6Info&7] This server is running Minecraft %version%. The best gameplay
+    experience is only guaranteed if you are using this version.'
