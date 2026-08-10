@@ -123,9 +123,9 @@ world-settings:
     duplicate-uuid-saferegen-delete-range: 32
     keep-spawn-loaded-range: 6
     auto-save-interval: -1
+    container-update-tick-rate: 1
     nether-ceiling-void-damage: false
     allow-non-player-entities-on-scoreboards: false
-    container-update-tick-rate: 1
     frosted-ice:
       enabled: true
       delay:
@@ -140,6 +140,10 @@ world-settings:
     non-player-arrow-despawn-rate: -1
     prevent-tnt-from-moving-in-water: false
     armor-stands-tick: true
+    disable-thunder: false
+    skeleton-horse-thunder-spawn-chance: 0.01
+    disable-ice-and-snow: false
+    fire-physics-event-for-redstone: false
     keep-spawn-loaded: true
     anti-xray:
       enabled: false
@@ -167,15 +171,11 @@ world-settings:
     experience-merge-max-value: -1
     armor-stands-do-collision-entity-lookups: true
     skip-entity-ticking-in-chunks-scheduled-for-unload: true
-    disable-thunder: false
-    skeleton-horse-thunder-spawn-chance: 0.01
-    disable-ice-and-snow: false
-    fire-physics-event-for-redstone: false
     spawner-nerfed-mobs-should-jump: false
     baby-zombie-movement-speed: 0.5
-    all-chunks-are-slime-chunks: false
-    mob-spawner-tick-rate: 1
     allow-leashing-undead-horse: false
+    mob-spawner-tick-rate: 1
+    all-chunks-are-slime-chunks: false
     squid-spawn-height:
       maximum: 0.0
     disable-teleportation-suffocation-check: false
